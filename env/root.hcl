@@ -17,10 +17,10 @@ locals {
   _cfg_dir_basenames = concat([""], split("/", path_relative_to_include()))
 
   # f.e. _cfg_files = [ 
-  #   "../../../cfg.yaml",
-  #   "../../../prod/cfg.yaml",
-  #   "../../../prod/ecs/cfg.yaml",
-  #   "../../../prod/ecs/cluster/cfg.yaml",
+  #   "./cfg.yaml",
+  #   "./prod/cfg.yaml",
+  #   "./prod/ecs/cfg.yaml",
+  #   "./prod/ecs/cluster/cfg.yaml",
   #  ]
   _cfg_files = [for i, _ in local._cfg_dir_basenames :
     format("%s%s/cfg.yaml",
