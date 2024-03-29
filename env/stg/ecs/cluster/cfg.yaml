@@ -1,0 +1,2 @@
+stack_name: ecs/cluster
+stack_description: AWS ECS cluster

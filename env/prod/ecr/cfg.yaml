@@ -1,0 +1,2 @@
+stack_name: ecr
+stack_description: AWS ECR private repositories

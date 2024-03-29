@@ -1,0 +1,8 @@
+# don't push terraform cache
+.terraform/
+
+# don't push terragrunt cache
+.terragrunt-cache/
+
+# don't push terraform lock files
+.terraform.lock.hcl
