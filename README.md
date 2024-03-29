@@ -30,7 +30,7 @@ env
 
 `cfg.yaml` files are merged. F.e. for stack defined in `env/prod/ecs/cluster/terragrunt.hcl`, terragrunt will try to read and merge files `env/cfg.yaml`, `env/prod/cfg.yaml`, `env/prod/ecs/cfg.yaml`, `env/prod/ecs/cluster/cfg.yaml`.
 
-Merging logic is defined in `env/root.hcl` which should be *include*d each into `terragrunt.hcl` file with this code:
+Merging logic is defined in `env/root.hcl` which should be *include*d into each `terragrunt.hcl` file with this code:
 
 ```hcl
 include "root" {
@@ -43,7 +43,7 @@ locals {
 }
 ```
 
-Note that this example uses `merge()` function which [does not do deep merging](https://github.com/hashicorp/terraform/issues/24987), so it's not possible to merge complex configurations. This simple solutions is mostly suitable for simple flat key-value configurations.
+Note that this example uses `merge()` function which [does not do deep merging](https://github.com/hashicorp/terraform/issues/24987), so it's not possible to merge complex configurations. This simple solution is mostly suitable for simple flat key-value configurations.
 
 ## Demo
 
