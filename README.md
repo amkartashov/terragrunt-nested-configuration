@@ -2,6 +2,32 @@
 
 *Example of nested configuration in repo with terragrunt stacks organized in tree*.
 
+Terragrunt stacks are organized under `env/` directory:
+
+```
+env
+├── cfg.yaml
+├── root.hcl
+├── prod
+│  ├── cfg.yaml
+│  ├── ecr
+│  │  ├── cfg.yaml
+│  │  └── terragrunt.hcl
+│  ├── ecs
+│  │  ├── cluster
+│  │  │  ├── cfg.yaml
+│  │  │  └── terragrunt.hcl
+│  │  └── tasks
+│  │     ├── cfg.yaml
+│  │     └── terragrunt.hcl
+│  └── network
+│     ├── cfg.yaml
+│     └── terragrunt.hcl
+└── stg
+   ├── cfg.yaml
+...
+```
+
 `cfg.yaml` files are merged. F.e. for stack defined in `env/prod/ecs/cluster/terragrunt.hcl`, terragrunt will try to read and merge files `env/cfg.yaml`, `env/prod/cfg.yaml`, `env/prod/ecs/cfg.yaml`, `env/prod/ecs/cluster/cfg.yaml`.
 
 Merging logic is defined in `env/root.hcl` which should be *include*d each into `terragrunt.hcl` file with this code:
