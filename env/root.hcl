@@ -13,8 +13,8 @@
 locals {
   ### BEGIN Read cfg.yaml files and merge
 
-  # f.e. _cfg_dir_basenames = [ "", "prod", "ecs", "cluster" ]
-  _cfg_dir_basenames = concat([""], split("/", path_relative_to_include()))
+  # f.e. _cfg_dir_basenames = [ ".", "prod", "ecs", "cluster" ]
+  _cfg_dir_basenames = flatten([".", split("/", path_relative_to_include())])
 
   # f.e. _cfg_files = [ 
   #   "./cfg.yaml",
@@ -23,10 +23,7 @@ locals {
   #   "./prod/ecs/cluster/cfg.yaml",
   #  ]
   _cfg_files = [for i, _ in local._cfg_dir_basenames :
-    format("%s%s/cfg.yaml",
-      ".",
-      join("/", slice(local._cfg_dir_basenames, 0, i + 1))
-    )
+    "${join("/", slice(local._cfg_dir_basenames, 0, i + 1))}/cfg.yaml"
   ]
 
   cfg = merge([for cfg_file in local._cfg_files :
